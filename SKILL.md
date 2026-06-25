@@ -1,11 +1,12 @@
 ---
 name: skill-maker-pro
 displayName: 元技能
-version: 2.8.0
+version: 2.8.1
+slug: skill-maker-pro
 summary: 制作技能、审查技能、升级技能的全流程元技能——从零设计到进化四阶框架（E0-E3），覆盖技能全生命周期管理。v2.8.0 新增进化四阶体系。
 description: >-
   制作、审查、升级 Agent 技能的元技能
-allowed-tools:
+allowedTools:
 - Read
 - Write
 - Edit
@@ -1326,7 +1327,7 @@ skill-maker-pro (M1 制作新技能)
 ```
 技能文件结构（按顺序，不可缺项）
 │
-├── 🔖 YAML frontmatter          → name/version/description/ allowed-tools/triggers
+├── 🔖 YAML frontmatter          → name/version/description/ allowedTools/triggers
 ├── 📌 技能标题（H1）             → 「emoji + 技能名 + 中文标签」
 ├── 👋 欢迎语                    → 3-5句话：我是谁、我能做什么、我的核心原则
 ├── ⚠️ 技能边界与互斥（必须）     → 跟谁不抢活、跟谁怎么配合、灰色地带裁决
@@ -1356,10 +1357,10 @@ skill-maker-pro (M1 制作新技能)
 ```yaml
 ---
 name: skill-name-pro          # ❗必须：kebab-case，-pro后缀
-version: 1.0.0               # ❗必须：semver
+version: 2.8.1               # ❗必须：semver
 description: >-
   一句话说清这个技能做什么、给谁用。  # ❗必须：≤36字符，使用 >- 折行
-allowed-tools:                # ❗必须：只列实际会用到的
+allowedTools:                # ❗必须：只列实际会用到的
   - tool-1
   - tool-2
 triggers:                     # ❗必须：≥30个
@@ -1372,7 +1373,7 @@ triggers:                     # ❗必须：≥30个
 - `name`：kebab-case，-pro 后缀（表示专业版/生产级）
 - `version`：三位语义化版本号，必须 `x.y.z` 格式
 - `description`：YAML 中用 `>-` 折行语法，严格 ≤36 字符（含标点）
-- `allowed-tools`：不列"可能用到"的工具，只列"本技能一定会调用"的
+- `allowedTools`：不列"可能用到"的工具，只列"本技能一定会调用"的
 - `triggers`：至少 30 个，实际目标 60-200 个
 - YAML 开始和结束各一个 `---`，不得省略结束符
 
@@ -2356,7 +2357,7 @@ Step 5: 在新技能的质量红线中勾选"有🔒不可变核心六条"
 
 | # | 审查维度 | 检查方法 | 权重 |
 |---|---------|---------|------|
-| 1 | YAML完整性 | name/version/description/ allowed-tools/triggers 五项是否存在且合法 | ★★★ |
+| 1 | YAML完整性 | name/version/description/ allowedTools/triggers 五项是否存在且合法 | ★★★ |
 | 2 | 互斥声明 | 是否覆盖所有相邻技能？灰色地带表≥14条？协作模式可执行？ | ★★★ |
 | 3 | 触发词覆盖 | 用10条自然语言测试≥95%命中？简写/口语/中英混合覆盖？ | ★★★ |
 | 4 | 场景路由 | ≥6个？每场景四维参数（目标/变量/输出/红线）完整？场景之间无重叠？ | ★★★ |
@@ -2892,7 +2893,7 @@ ADR缺失的修复策略：
 以下**任一不满足**，技能不得发布：
 
 ```
-□ YAML frontmatter 完整（name/version/description/ allowed-tools/triggers）
+□ YAML frontmatter 完整（name/version/description/ allowedTools/triggers）
 □ description ≤36字符
 □ version 为三位语义化版本号
 □ name 为 kebab-case + -pro 后缀
